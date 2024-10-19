@@ -16,7 +16,9 @@ Widget Username(BuildContext context) {
             borderSide: BorderSide(color: Colors.blue),
           ),
           filled: true,
-          icon: Icon(Icons.person),
+          icon: Icon(
+            Icons.person,
+          ),
           label: Text(
             "Username",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -39,6 +41,7 @@ Widget Username(BuildContext context) {
 ///
 
 Widget PasswordField(BuildContext context) {
+  bool isVisabel = true;
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: TextFormField(
@@ -60,14 +63,15 @@ Widget PasswordField(BuildContext context) {
           icon: Icon(Icons.lock),
           label: Text(
             "Password",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
           ),
           fillColor: Colors.blue[100],
           hintText: "Password",
           hintStyle: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
           ),
-          suffixIcon: Icon(Icons.visibility_off),
+          errorStyle: TextStyle(color: Colors.white70, fontSize: 10),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(50),
           )),
@@ -81,7 +85,6 @@ Widget PasswordField(BuildContext context) {
 ///
 ///
 ///
-
 
 ///
 ///
@@ -98,27 +101,33 @@ InputDecoration decoration({
   return InputDecoration(
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(
-        color: Colors.purple,
+        color: Colors.white,
         width: 2,
       ),
       borderRadius: BorderRadius.circular(20),
     ),
     focusedBorder: OutlineInputBorder(
       borderSide: BorderSide(
-        color: Colors.purple,
+        color: Colors.white,
         width: 2,
       ),
       borderRadius: BorderRadius.circular(20),
     ),
     labelText: lab,
     hintText: hint,
-    prefixIcon:  Icon(icon),
-    labelStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-    hintStyle: TextStyle(color: Colors.black),
+    prefixIcon: Icon(
+      icon,
+      color: Colors.white,
+    ),
+    labelStyle: TextStyle(
+        fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+    hintStyle: TextStyle(color: Colors.white),
     filled: true,
     fillColor: Colors.transparent,
+    errorStyle: TextStyle(color: Colors.white70, fontSize: 10),
   );
 }
+
 ///
 ///
 ///
@@ -126,36 +135,74 @@ InputDecoration decoration1({
   required String lab,
   required String hint,
   required IconData icon,
+  required bool isVisible,
+  required VoidCallback onToggleVisibility,
 }) {
   return InputDecoration(
-    helperStyle: TextStyle(color: Colors.white), // لون النص المساعد
+    suffixIcon: InkWell(
+      child: Icon(
+        isVisible ? Icons.visibility : Icons.visibility_off,
+        color: Colors.white,
+      ),
+      onTap: onToggleVisibility,
+    ),
+    helperStyle: TextStyle(color: Colors.white),
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(
-        color: Colors.purple,
+        color: Colors.white,
         width: 2,
       ),
       borderRadius: BorderRadius.circular(20),
     ),
     focusedBorder: OutlineInputBorder(
       borderSide: BorderSide(
-        color: Colors.purple,
+        color: Colors.white,
         width: 2,
       ),
       borderRadius: BorderRadius.circular(20),
     ),
     labelText: lab,
     hintText: hint,
-    prefixIcon:  Icon(icon),
-    labelStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-    hintStyle: TextStyle(color: Colors.black),
+    prefixIcon: Icon(
+      icon,
+      color: Colors.white,
+    ),
+    labelStyle: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      color: Colors.white,
+    ),
+    hintStyle: TextStyle(color: Colors.white),
     filled: true,
-    fillColor:Colors.transparent,
-counterText:"Forget your password?",
-  counterStyle: TextStyle(
-    color: Colors.black,
-    fontSize: 12,
-    fontWeight: FontWeight.w400
-
-  )
+    fillColor: Colors.transparent,
+    counterStyle: TextStyle(
+      color: Colors.white,
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+    ),
+    errorStyle: TextStyle(color: Colors.white70, fontSize: 10),
   );
 }
+
+
+
+
+
+//لما يكونو كلهم بملف
+// suffixIcon: isVisible
+// ? InkWell(
+// child: Icon(Icons.visibility, color: Colors.white),
+// onTap: () {
+// setState(() {
+// isVisible = !isVisible; // Toggle the visibility
+// });
+// },
+// )
+//     : InkWell(
+// child: Icon(Icons.visibility_off, color: Colors.white),
+// onTap: () {
+// setState(() {
+// isVisible = !isVisible; // Toggle the visibility
+// });
+// },
+// ),
