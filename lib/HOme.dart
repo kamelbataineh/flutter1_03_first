@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
           ),
           SingleChildScrollView(
             child: Form(
-              key: _formkey, // Assign the form key here
+              key: _formkey,
               child: Column(
                 children: [
 ////////////////////////////////////////////////
@@ -121,7 +121,7 @@ class _HomeState extends State<Home> {
                         isVisible: isVisible,
                         onToggleVisibility: () {
                           setState(() {
-                            isVisible = !isVisible; // Toggle the visibility
+                            isVisible = !isVisible;
                           });
                         },
                       ),
