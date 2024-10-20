@@ -93,7 +93,7 @@ Widget PasswordField(BuildContext context) {
 ///
 ///
 ///
-InputDecoration decoration({
+InputDecoration decorationUserName({
   required String lab,
   required String hint,
   required IconData icon,
@@ -131,12 +131,13 @@ InputDecoration decoration({
 ///
 ///
 ///
-InputDecoration decoration1({
+InputDecoration decorationPassword({
   required String lab,
   required String hint,
   required IconData icon,
   required bool isVisible,
   required VoidCallback onToggleVisibility,
+  required var passwordlengthVoid,
 }) {
   return InputDecoration(
     suffixIcon: InkWell(
@@ -174,13 +175,22 @@ InputDecoration decoration1({
     ),
     hintStyle: TextStyle(color: Colors.white),
     filled: true,
+
     fillColor: Colors.transparent,
-    counterStyle: TextStyle(
-      color: Colors.white,
-      fontSize: 12,
-      fontWeight: FontWeight.w400,
+    counter: Text("$passwordlengthVoid/20",
+    style: TextStyle(color: Colors.white),
     ),
-    errorStyle: TextStyle(color: Colors.white70, fontSize: 10),
+
+
+    //
+    // counterStyle: TextStyle(
+    //   color: Colors.white,
+    //   fontSize: 12,
+    //   fontWeight: FontWeight.w400,
+    // ),
+
+      errorStyle: TextStyle(color: Colors.white70, fontSize: 10),
+
   );
 }
 

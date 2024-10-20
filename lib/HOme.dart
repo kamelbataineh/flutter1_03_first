@@ -12,6 +12,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final _formkey = GlobalKey<FormState>();
   bool isVisible = true;
+  var passwordlength=0;
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +81,7 @@ class _HomeState extends State<Home> {
                     padding: const EdgeInsets.all(16.0),
                     child: TextFormField(
                       style: TextStyle(color: Colors.white),
-                      decoration: decoration(
+                      decoration: decorationUserName(
                         lab: "username",
                         hint: "Username,Emil,number",
                         icon: Icons.person,
@@ -111,10 +112,16 @@ class _HomeState extends State<Home> {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: TextFormField(
+                      maxLength: 20,
+                      onChanged: (value){
+                        setState(() {
+                          passwordlength=value.length;
+                        });
+                      },
                       style: TextStyle(color: Colors.white),
                       keyboardType: TextInputType.text,
                       obscureText: isVisible,
-                      decoration: decoration1(
+                      decoration: decorationPassword(
                         lab: "password",
                         hint: "Enter your password",
                         icon: Icons.password,
@@ -124,6 +131,7 @@ class _HomeState extends State<Home> {
                             isVisible = !isVisible;
                           });
                         },
+                      passwordlengthVoid: passwordlength.bitLength,
                       ),
                       validator: (Password) {
                         if (Password == null || Password.isEmpty) {
